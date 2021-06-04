@@ -6,7 +6,7 @@ output: html_document
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
+knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
@@ -14,8 +14,15 @@ library(tidyverse)
 ```{r}
 x <- read_csv("https://raw.githubusercontent.com/Financial-Times/police-misconduct-complaints-analysis/main/output/philly_clean.csv")
 ```
+
+```{r}
+view(x)
+```
+
 ```{r}
 x
+x %>%select(officer_id)%>%
+  group_by(officer_id)%>%summarise(total = n())%>%arrange(desc(total))
 ```
 
 
